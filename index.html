@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReTro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main>
+      <header class="pt-8 px-3 raleway md:w-[70%] mx-auto">
+        <nav class="flex justify-between items-center">
+          <h1 class="text-3xl font-black">ReTro</h1>
+          <ul class="hidden gap-2 items-center md:flex">
+            <li class="tooltip" data-tip="Home">
+              <a href="#"><img src="./images/Frame 2.png" alt="" /></a>
+            </li>
+            <li class="tooltip" data-tip="Edit">
+              <a href="#"><img src="./images/Frame 3.png" alt="" /></a>
+            </li>
+            <li class="tooltip" data-tip="Add user">
+              <a href="#"><img src="./images/Frame 4.png" alt="" /></a>
+            </li>
+            <li class="tooltip" data-tip="Book mark">
+              <a href="#"><img src="./images/Frame 5.png" alt="" /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><button class="btn bg-[#797DFC] text-white font-bold">
+                  Sign In
+                </button></a
+              >
+            </li>
+          </ul>
+          <div class="md:hidden dropdown dropdown-end">
+            <div
+              tabindex="0"
+              role="button"
+              class="btn btn-ghost btn-circle avatar"
+            >
+              <div class="w-10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h7"
+                  />
+                </svg>
+              </div>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box"
+            >
+              <li class="tooltip" data-tip="Home">
+                <a href="#"><img src="./images/Frame 2.png" alt="" /></a>
+              </li>
+              <li class="tooltip" data-tip="Edit">
+                <a href="#"><img src="./images/Frame 3.png" alt="" /></a>
+              </li>
+              <li class="tooltip" data-tip="Add user">
+                <a href="#"><img src="./images/Frame 4.png" alt="" /></a>
+              </li>
+              <li class="tooltip" data-tip="Book mark">
+                <a href="#"><img src="./images/Frame 5.png" alt="" /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><button class="btn bg-[#797DFC] text-white font-bold">
+                    Sign In
+                  </button></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <section
+          class="my-6 rounded-xl xl:flex xl:justify-around items-center p-5 bg-[url('./images/bgbanner.png')] bg-[#12132D] bg-cover bg-center xl:p-10"
+        >
+          <div>
+            <h1 class="text-white xl:text-6xl text-3xl font-black">
+              Welcome to the <br />
+              <span
+                class="bg-gradient-to-r from-[#797DFC] to-[#5055e6] text-transparent bg-clip-text"
+                >ReTro</span
+              >
+              Forum
+            </h1>
+            <p class="text-[#FFFFFFCC] font-medium text-[20px] my-5">
+              Share your favorite opinion and win and wp forum coffee mug!
+            </p>
+
+            <div class="flex bg-white w-max rounded-3xl mb-10 xl:mb-0">
+              <input
+                type="text"
+                class="p-2 overflow-hidden rounded-3xl outline-none"
+                placeholder="Search here anything"
+                id="search"
+              />
+              <button class="bg-[#797DFC] w-28 m-1 rounded-3xl text-white">
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="flex items-center justify-center h-max rounded-xl bg-white text-black p-5 font-medium md:text-2xl"
+          >
+            <table class="w-96 text-2xl font-medium">
+              <tbody>
+                <tr>
+                  <td>Registered Users</td>
+                  <td>01</td>
+                </tr>
+                <tr>
+                  <td>Forum</td>
+                  <td>05</td>
+                </tr>
+                <tr>
+                  <td>Topics</td>
+                  <td>01</td>
+                </tr>
+                <tr>
+                  <td>Replies</td>
+                  <td>01</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="py-6">
+          <div class="flex-col flex items-center">
+            <h1 class="text-center font-black text-4xl py-4">Let’s Discuss</h1>
+            <p class="text-center h-full md:w-2/3">
+              Yes, you can run unit tests and view the results directly within
+              the app. The integrated testing features allow for a streamlined.
+            </p>
+          </div>
+          <div class="flex xl:flex-row flex-col gap-4 py-6">
+            <div id="displayCard" class="xl:w-[60%] w-full">
+            </div>
+            <div
+              class="xl:w-[30%] w-full bg-[#F3F3F5] rounded-md box-border p-4"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <h1 class="font-bold text-2xl">Title</h1>
+                <div
+                  class="flex justify-center items-center gap-1 text-[#12132d98]"
+                >
+                  <img src="./images/Frame.png" alt="" />
+                  <span> Mark as read (4)</span>
+                </div>
+              </div>
+              <div class="bg-white rounded-md box-border p-4 flex">
+                <h1 class="text-sm font-semibold">10 Kids Unaware of Their Halloween Costume</h1>
+                <div class="flex items-center gap-3">
+                  <div><img src="./images/Vector (1).png" alt="" /></div>
+                  <span>3423</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </header>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
