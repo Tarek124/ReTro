@@ -70,23 +70,28 @@ const displayPost = (data) => {
       </div>`;
     displayCard.appendChild(newDiv);
   }
-
-  console.log(data);
 };
 
 const readMail = [];
-const handleReadButton = (data) => {
-  console.log(data);
+const readMailLength = document.getElementById("readMailLength");
+const handleReadButton = (title, view_count) => {
+  readMail.push({ title, view_count });
+  readMailLength.innerText = readMail.length;
+  handlereadItem();
 };
-// author: {
-//   name: "John Doe";
-// }
-// category: "Comedy";
-// comment_count: 560;
-// description: "It is one thing to subject yourself to a costume mishap";
-// id: 101;
-// image: "https://i.ibb.co/0QRxkd5/pexels-jan-kop-iva-3525908.jpg";
-// isActive: true;
-// posted_time: 5;
-// title: "10 Kids Unaware of Their Costume";
-// view_count: 1568;
+
+function handlereadItem() {
+  const readedItem = document.getElementById("readedItem");
+  const newitem = document.createElement("div");
+
+  readMail.map((p) => {
+    return (newitem.innerHTML = ` <div class="bg-white rounded-md box-border shadow-xl p-4 flex justify-between mb-2">
+    <h1 class="text-sm font-semibold">${p.title}</h1>
+    <div class="flex items-center gap-1">
+      <div><img src="./images/Vector (1).png" alt="" /></div>
+      <span>${p.view_count}</span>
+    </div>
+    </div>`);
+  });
+  readedItem.appendChild(newitem);
+}
