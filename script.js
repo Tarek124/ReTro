@@ -1,16 +1,32 @@
+const displayCard = document.getElementById("displayCard");
+const searchValue = document.getElementById("search");
+
 const fetchData = () => {
-  const url = " https://openapi.programming-hero.com/api/retro-forum/posts";
-  const request = new Request(url);
-  fetch(request)
+  const url = "https://openapi.programming-hero.com/api/retro-forum/posts";
+
+  fetch(url)
     .then((response) => response.json())
     .then((data) => displayPost(data))
     .catch((err) => console.log(err));
 };
+
 fetchData();
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+  displayCard.innerText = "";
+  const value = searchValue.value;
+  const url2 = `https://openapi.programming-hero.com/api/retro-forum/posts?category=${value}`;
+  fetch(url2)
+    .then((response) => response.json())
+    .then((data) => displayPost(data))
+    .catch((err) => console.log(err));
+  console.log(url2);
+});
+
 // show all post
 const displayPost = (data) => {
-  const displayCard = document.getElementById("displayCard");
   let myData = data.posts;
+
   for (const p of myData) {
     const newDiv = document.createElement("div");
     const dot = p.isActive ? "bg-green-700" : "bg-red-700";
@@ -59,7 +75,7 @@ const displayPost = (data) => {
             </div>
             <div>
               <img
-              onclick="handleReadButton('${p.title}','${p.view_count}')"
+              onclick="handleReadButton(&quot;${p.title}&quot;,'${p.view_count}')"
                 class="cursor-pointer"
                 src="./images/email 1.png"
                 alt=""
@@ -70,6 +86,7 @@ const displayPost = (data) => {
       </div>`;
     displayCard.appendChild(newDiv);
   }
+  console.log(data);
 };
 
 const readMail = [];
