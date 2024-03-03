@@ -13,13 +13,20 @@ const fetchData = () => {
 fetchData();
 
 document.getElementById("searchBtn").addEventListener("click", () => {
-  displayCard.innerText = "";
+  displayCard.innerHTML = `<div id="load" class="flex justify-center items-center">
+  <span class="loading loading-ring loading-lg"></span>
+</div>`;
+
   const value = searchValue.value;
   const url2 = `https://openapi.programming-hero.com/api/retro-forum/posts?category=${value}`;
-  fetch(url2)
-    .then((response) => response.json())
-    .then((data) => displayPost(data))
-    .catch((err) => console.log(err));
+
+  setTimeout(() => {
+    displayCard.innerText = "";
+    fetch(url2)
+      .then((response) => response.json())
+      .then((data) => displayPost(data))
+      .catch((err) => console.log(err));
+  }, 2000);
   searchValue.value = "";
 });
 
