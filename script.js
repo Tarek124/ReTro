@@ -93,7 +93,6 @@ const displayPost = (data) => {
       </div>`;
     displayCard.appendChild(newDiv);
   }
-  console.log(data);
 };
 
 const readMail = [];
@@ -119,3 +118,73 @@ function handlereadItem() {
   });
   readedItem.appendChild(newitem);
 }
+
+const latestPost = () => {
+  const url =
+    "https://openapi.programming-hero.com/api/retro-forum/latest-posts";
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => displayLatestPost(data))
+    .catch((err) => console.log(err));
+};
+
+latestPost();
+
+const displayLatestPost = (data) => {
+  const latestDiv = document.getElementById("latestDiv");
+  console.log(data);
+
+  for (const p of data) {
+    const newDiv = document.createElement("div");
+    let date = p.author.posted_date ? p.author.posted_date : "No publish Date";
+    newDiv.innerHTML = `     <a
+    href="#"
+    class="flex flex-col gap-4 rounded-2xl border border-solid shadow-xl bg-[#f5f8ff] p-6 font-bold text-black transition"
+  >
+    <img
+      src=${p.cover_image}
+      alt=""
+      class="inline-block h-60 w-full object-cover"
+    />
+    <div class="w-full pt-4">
+      <p
+        class="mb-4 flex items-center gap-2 text-xs font-semibold uppercase text-[#636262]"
+      >
+        <img src="./images/Vector.png"/>
+        ${date}
+      <p class="mb-2 text-xl font-semibold">
+        ${p.title}
+      </p>
+      <p class="mb-3 font-normal text-[#636262] lg:mb-8">
+       ${p.description}
+      </p>
+      <div
+        class="mx-auto flex max-w-[480px] flex-row items-center text-left"
+      >
+        <img
+          src=${p.profile_image}
+          alt=""
+          class="mr-4 inline-block h-16 w-16 rounded-full object-cover"
+        />
+        <div class="flex flex-col items-start">
+          <h6 class="text-base font-semibold">${p.author.name}</h6>
+          <div
+            class="flex items-start max-[991px]:flex-col lg:items-center"
+          >
+            <p class="text-sm text-[#636262]">${p.author.designation ? p.author.designation : "unknown"}</p>
+            <p
+              class="ml-2 mr-2 text-sm text-[#636262] max-[991px]:hidden"
+            >
+              
+            </p>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>`;
+    latestDiv.appendChild(newDiv);
+  }
+};
+
