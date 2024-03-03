@@ -20,7 +20,7 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     .then((response) => response.json())
     .then((data) => displayPost(data))
     .catch((err) => console.log(err));
-  console.log(url2);
+  searchValue.value = "";
 });
 
 // show all post
