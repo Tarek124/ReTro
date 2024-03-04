@@ -1,5 +1,6 @@
 const displayCard = document.getElementById("displayCard");
 const searchValue = document.getElementById("search");
+const latestDiv = document.getElementById("latestDiv");
 
 const fetchData = () => {
   const url = "https://openapi.programming-hero.com/api/retro-forum/posts";
@@ -9,8 +10,19 @@ const fetchData = () => {
     .then((data) => displayPost(data))
     .catch((err) => console.log(err));
 };
+displayCard.innerHTML = `<div id="load" class="py-10 flex justify-center items-center">
+<span class="loading loading-ring loading-lg"></span>
+</div>`;
+latestDiv.innerHTML = `<div id="load" class=" flex justify-center items-center">
+<span class="loading loading-ring loading-lg"></span>
+</div>`;
 
-fetchData();
+setTimeout(() => {
+  displayCard.innerHTML = "";
+  latestDiv.innerHTML = "";
+  fetchData();
+  latestPost();
+}, 2000);
 
 document.getElementById("searchBtn").addEventListener("click", () => {
   displayCard.innerHTML = `<div id="load" class="flex justify-center items-center">
@@ -129,27 +141,22 @@ const latestPost = () => {
     .catch((err) => console.log(err));
 };
 
-latestPost();
-
 const displayLatestPost = (data) => {
-  const latestDiv = document.getElementById("latestDiv");
-  console.log(data);
-
   for (const p of data) {
     const newDiv = document.createElement("div");
+    newDiv.classList.add('w-full')
     let date = p.author.posted_date ? p.author.posted_date : "No publish Date";
-    newDiv.innerHTML = `     <a
-    href="#"
-    class="flex flex-col gap-4 rounded-2xl border border-solid shadow-xl bg-[#f5f8ff] p-6 font-bold text-black transition"
+    newDiv.innerHTML = `     <div
+    class="h-[570px]  w-full flex flex-col gap-4 rounded-2xl border border-solid shadow-xl bg-[#f5f8ff] p-6 font-bold text-black transition"
   >
     <img
       src=${p.cover_image}
       alt=""
       class="inline-block h-60 w-full object-cover"
     />
-    <div class="w-full pt-4">
+    <div class="w-full pt-1">
       <p
-        class="mb-4 flex items-center gap-2 text-xs font-semibold uppercase text-[#636262]"
+        class="mb-2 flex items-center gap-2 text-xs font-semibold uppercase text-[#636262]"
       >
         <img src="./images/Vector.png"/>
         ${date}
@@ -160,7 +167,7 @@ const displayLatestPost = (data) => {
        ${p.description}
       </p>
       <div
-        class="mx-auto flex max-w-[480px] flex-row items-center text-left"
+        class="py-3 flex items-center text-left"
       >
         <img
           src=${p.profile_image}
@@ -172,7 +179,9 @@ const displayLatestPost = (data) => {
           <div
             class="flex items-start max-[991px]:flex-col lg:items-center"
           >
-            <p class="text-sm text-[#636262]">${p.author.designation ? p.author.designation : "unknown"}</p>
+            <p class="text-sm text-[#636262]">${
+              p.author.designation ? p.author.designation : "unknown"
+            }</p>
             <p
               class="ml-2 mr-2 text-sm text-[#636262] max-[991px]:hidden"
             >
@@ -183,8 +192,7 @@ const displayLatestPost = (data) => {
         </div>
       </div>
     </div>
-  </a>`;
+  </div>`;
     latestDiv.appendChild(newDiv);
   }
 };
-
